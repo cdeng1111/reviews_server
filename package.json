@@ -1,0 +1,27 @@
+{
+  "name": "w8-sdc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Persistent-Pecan/reviews.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Persistent-Pecan/reviews/issues"
+  },
+  "homepage": "https://github.com/Persistent-Pecan/reviews#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.6.0"
+  }
+}
