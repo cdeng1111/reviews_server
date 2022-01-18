@@ -1,10 +1,5 @@
 const mongoose = require('mongoose');
 
-const productSchema = mongoose.Schema({
-  product_id: Number,
-  reviews: [reviewSchema]
-})
-
 const reviewSchema = new mongoose.Schema({
   review_id: { type: Number, unique: true, required: true },
   product_id: { type: Number, unique: true, required: true },
@@ -19,11 +14,12 @@ const reviewSchema = new mongoose.Schema({
   photos: [
     {
       id: { type: Number },
-      url: { type : String }
-    }
-  ]
+      url: { type: String },
+    },
+  ],
 });
 
-const Product = mongoose.model('Product', productSchema);
-const Review = mongoose.model('Review', reviewSchema);
-
+const productSchema = mongoose.Schema({
+  product_id: Number,
+  reviews: [reviewSchema],
+});
