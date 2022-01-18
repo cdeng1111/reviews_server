@@ -1,5 +1,5 @@
-const { Pool } = require("pg");
-const user = require('../../env/config.js');
+const { Pool } = require('pg');
+const user = require('../../env/config');
 
 const pool = new Pool(user);
 
