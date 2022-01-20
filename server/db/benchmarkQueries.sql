@@ -4,7 +4,8 @@ EXPLAIN ANALYZE select r.*, p.id as photo_id, p.url from reviews r
 left join photos p on r.id = p.review_id
 where r.product_id =
 	(SELECT floor(random() * 1000010 + 1)::int);
---  Execution Time: 1017.116 ms (using EXPLAIN ANALYZE)
+-- Execution Time: 1017.116 ms (before index)
+-- Execution Time: 1.857 ms (after index)
 
 EXPLAIN ANALYZE SELECT
          r.id,
@@ -26,8 +27,8 @@ EXPLAIN ANALYZE SELECT
       FROM reviews r
       WHERE r.product_id = (SELECT floor(random() * 1000010 + 1)::int)
        OFFSET 1 LIMIT 5
---  Execution Time: 2204.477 ms (using EXPLAIN ANALYZE)
-
+--  Execution Time: 2204.477 ms (before index)
+--  Execution Time: 1.415 ms (after index)
 
 
 EXPLAIN ANALYZE SELECT json_build_object(
@@ -60,4 +61,5 @@ EXPLAIN ANALYZE SELECT json_build_object(
      )
     FROM reviews
     WHERE product_id = (SELECT floor(random() * 1000010 + 1)::int);
---  Execution Time: 5297.290 ms (using EXPLAIN ANALYZE)
+--  Execution Time: 5297.290 ms (before index)
+--  Execution Time: 7.570 ms (after index)
