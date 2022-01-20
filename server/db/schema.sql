@@ -53,3 +53,16 @@ CREATE TABLE characteristic_reviews (
 ALTER TABLE reviews
   ALTER COLUMN date SET DATA TYPE timestamp without time zone
   USING timestamp without time zone 'epoch' + (date / 1000 ) * interval '1 second';
+
+SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('"reviews"', 'review_id')), (SELECT (MAX("review_id") + 1) FROM "reviews"), FALSE);
+SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('"photos"', 'id')), (SELECT (MAX("id") + 1) FROM "photos"), FALSE);
+SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('"characteristic_reviews"', 'id')), (SELECT (MAX("id") + 1) FROM "characteristic_reviews"), FALSE);
+
+CREATE INDEX product_id_idx ON reviews (product_id);
+CREATE INDEX rating_idx ON reviews (rating);
+CREATE INDEX recommend_idx ON reviews (recommend);
+CREATE INDEX review_id_characteristic_id_idx ON characteristic_reviews (review_id, characteristic_id);
+CREATE INDEX characteristic_id_idx ON characteristic_reviews ( characteristic_id);
+CREATE INDEX name_id_idx ON characteristics (name, id);
+CREATE INDEX char_product_id_idx ON characteristics (product_id);
+CREATE INDEX name_idx ON characteristics (name);
