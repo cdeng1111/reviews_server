@@ -7,7 +7,7 @@ const port = 3000;
 
 app.use(express.json());
 
-app.use('/reviews', router);
+app.use('/', router);
 
 app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`);
