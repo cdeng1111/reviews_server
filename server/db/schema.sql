@@ -45,10 +45,10 @@ CREATE TABLE characteristic_reviews (
 );
 
 
-\COPY reviews FROM '../sdc_data/reviews.csv' WITH (FORMAT CSV, DELIMITER ',', HEADER);
-\COPY photos FROM '../sdc_data/reviews_photos.csv' WITH (FORMAT CSV, DELIMITER ',', HEADER);
-\COPY characteristics FROM '../sdc_data/characteristics.csv' WITH (FORMAT CSV, DELIMITER ',', HEADER);
-\COPY characteristic_reviews FROM '../sdc_data/characteristic_reviews.csv' WITH (FORMAT CSV, DELIMITER ',', HEADER);
+\COPY reviews FROM '../sdc_data/reviews.csv' WITH (FORMAT CSV, DELIMITER ',', HEADER); --COPY 5,774,952
+\COPY photos FROM '../sdc_data/reviews_photos.csv' WITH (FORMAT CSV, DELIMITER ',', HEADER); --COPY 2,742,540
+\COPY characteristics FROM '../sdc_data/characteristics.csv' WITH (FORMAT CSV, DELIMITER ',', HEADER); --COPY 3,347,679
+\COPY characteristic_reviews FROM '../sdc_data/characteristic_reviews.csv' WITH (FORMAT CSV, DELIMITER ',', HEADER); --COPY 19,327,575
 
 ALTER TABLE reviews
   ALTER COLUMN date SET DATA TYPE timestamp without time zone
@@ -59,10 +59,6 @@ SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('"photos"', 'id')), (SELECT (MAX("i
 SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('"characteristic_reviews"', 'id')), (SELECT (MAX("id") + 1) FROM "characteristic_reviews"), FALSE);
 
 CREATE INDEX product_id_idx ON reviews (product_id);
-CREATE INDEX rating_idx ON reviews (rating);
-CREATE INDEX recommend_idx ON reviews (recommend);
 CREATE INDEX review_id_characteristic_id_idx ON characteristic_reviews (review_id, characteristic_id);
 CREATE INDEX characteristic_id_idx ON characteristic_reviews ( characteristic_id);
-CREATE INDEX name_id_idx ON characteristics (name, id);
 CREATE INDEX char_product_id_idx ON characteristics (product_id);
-CREATE INDEX name_idx ON characteristics (name);
