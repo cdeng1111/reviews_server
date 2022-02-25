@@ -76,7 +76,6 @@ module.exports = {
            (SELECT json_object_agg(rating,num_reviews)
               FROM (SELECT rating, count(*) as num_reviews from reviews
                   WHERE product_id = $1 GROUP BY rating) r),
-
        'recommended',
             (SELECT json_object_agg(recommend,num_reviews)
             FROM (SELECT recommend, count(*) as num_reviews FROM reviews

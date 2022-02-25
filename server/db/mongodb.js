@@ -1,3 +1,5 @@
+// designed for potential consideration
+
 const mongoose = require('mongoose');
 
 const reviewSchema = new mongoose.Schema({
