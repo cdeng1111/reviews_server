@@ -1,6 +1,6 @@
 # Ratings and Reviews API
 
-This scalable microservice is built to replaces the existing API with a backend system that can support the full data set for product ratings and reviews.
+This scalable microservice acts as a backend system to support the full data set for product ratings and reviews.
 
 Data was stored in a Postgres database. Data stored consisted of Reviews, Review Photos, and Reviews of specific product Characteristics.
 
